@@ -6,6 +6,16 @@ from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 
 
+def user_logout(request):
+    logout(request)
+    return redirect("login")
+
+
+def user_profile(request):
+    print(request.user)
+    return render(request, "user/profile.html", {"user": request.user})
+
+
 def user_login(request):
     message = ""
     if request.method == "POST":
@@ -21,7 +31,8 @@ def user_login(request):
                     request, username=username, password=password)
                 if user:
                     login(request, user)
-                    message = "登入成功！"
+                    # message = "登入成功！"
+                    return redirect("profile")
                 else:
                     message = "帳號或密碼錯誤！"
 
