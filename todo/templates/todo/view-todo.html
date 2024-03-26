@@ -40,7 +40,7 @@
 
 {% block content %}
 <h1>Todolist</h1>
-{% for todo in todos%}
+{{todo}}
 <div class="todo-list">
     <p class="date">{{todo.created}}</p>
     <p class="title">
@@ -56,8 +56,7 @@
 
 </div>
 
-{% endfor%}
 
 <br>
-<!-- {{todos}} -->
+<a href="todo">回首頁</a>
 {% endblock %}
