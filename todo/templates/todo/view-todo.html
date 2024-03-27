@@ -39,24 +39,18 @@
 
 
 {% block content %}
-<h1>Todolist</h1>
-{{todo}}
+<h1>{{todo.title}}</h1>
+<p class="title">
+    {% if todo.important %}
+    <span class="important">(重要事項)</span>
+    {% endif %}
+</p>
 <div class="todo-list">
     <p class="date">{{todo.created}}</p>
-    <p class="title">
-        <a href="{% url 'view-todo' todo.id %}">
-            {{todo.title}}
-        </a>
-        {% if todo.important %}
-        <span class="important">(重要事項)</span>
-        {% endif %}
-
-    </p>
     <p class="text">{{todo.text}}</p>
-
 </div>
 
 
 <br>
-<a href="todo">回首頁</a>
+<a href="{% url 'todolist'%}" style="text-align: left;">回首頁</a>
 {% endblock %}

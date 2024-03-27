@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <style>
+        :root {
+            --browncolor--: rgb(149, 111, 87);
+        }
+
         #message {
             color: red;
         }
@@ -16,27 +20,46 @@
         }
 
         #navbar {
-
-            background-color: orange;
+            display: flex;
+            align-items: center;
+            background-color: var(--browncolor--);
+            color: white;
             padding: 12px;
-            text-align: end;
+
         }
+
+        #navbar> :first-child:not(.right) {
+            text-decoration: none;
+            color: rgb(250, 250, 250);
+        }
+
+        .navbar-button {
+            background-color: white;
+            color: var(--browncolor--);
+            padding: 4px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-left: 6px;
+
+        }
+
+        #navbar .right {
+            margin-left: auto;
+        }
+
+
 
         #container {
             margin: 12px;
             text-align: center;
         }
 
-        .navbar-button {
-            background-color: chocolate;
-            color: white;
-            padding: 4px 12px;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-
         ul {
             list-style: none;
+        }
+
+        h1 {
+            color: var(--browncolor--);
         }
     </style>
     {% block style %}
@@ -46,12 +69,19 @@
 <body>
     <div id="navbar">
         {% if user.is_authenticated %}
-        使用者名稱 : <a href="{% url 'profile' %}">{{user.username}}</a>
+
+        使用者名稱 :&nbsp
+        <a href="{% url 'profile' %}">{{user.username}}</a>
         <a class="navbar-button" href="{% url 'logout' %}">登出</a>
-        <a class="navbar-button" href="{% url 'todo'%}">Todolist</a>
+        <div class="right">
+            <a class="navbar-button " href="{% url 'todolist'%}">代辦事項</a>
+            <a class="navbar-button " href="{% url 'create-todo'%}">建立事項</a>
+        </div>
         {% else %}
-        <a class="navbar-button" href="{% url 'login' %}">登入</a>
-        <a class="navbar-button" href="{% url 'register' %}">註冊</a>
+        <div class="right">
+            <a class="navbar-button" href="{% url 'login' %}">登入</a>
+            <a class="navbar-button" href="{% url 'register' %}">註冊</a>
+        </div>
         {% endif %}
     </div>
 
