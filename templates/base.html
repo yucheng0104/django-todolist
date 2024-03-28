@@ -76,6 +76,7 @@
         <div class="right">
             <a class="navbar-button " href="{% url 'todolist'%}">代辦事項</a>
             <a class="navbar-button " href="{% url 'create-todo'%}">建立事項</a>
+            <a class="navbar-button " href="{% url 'completed-todo'%}">已完成事項</a>
         </div>
         {% else %}
         <div class="right">
@@ -90,6 +91,16 @@
         {% endblock %}
         <p id="message">{{message}}</p>
     </div>
+
 </body>
+{% block javascript%}
+<script>
+
+    function confirmDelete() {
+        return confirm("確認刪除嗎？");
+
+    }
+</script>
+{% endblock %}
 
 </html>

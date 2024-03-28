@@ -6,7 +6,7 @@
 <style>
     .todo-list {
         background-color: white;
-        margin: 24px auto;
+        margin: 50px auto;
         width: 500px;
         height: 200px;
         border-radius: 0 0 4px 4px;
@@ -49,7 +49,13 @@
 
 
 {% block content %}
-<h1>Todolist</h1>
+<h1>
+    {%if completed%}
+    Complete Todo
+    {%else%}
+    Todo List
+    {% endif%}
+</h1>
 {% for todo in todos%}
 <div class="todo-list">
     <p class="date">{{todo.created}}</p>
@@ -63,6 +69,7 @@
 
     </p>
     <p class="text">{{todo.text}}</p>
+    <a href="{% url 'delete-todo' todo.id %}" onclick="return confirmDelete()">刪除</a>
 
 </div>
 
